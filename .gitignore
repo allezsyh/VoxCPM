@@ -2,3 +2,19 @@ launch.json
 __pycache__
 voxcpm.egg-info
 .DS_Store
+
+# Local models (large files, should be downloaded separately)
+models/
+!models/.gitkeep
+!models/README.md
+
+# Demo outputs
+demo/output_*.wav
+demo/batch_outputs/
+demo/parameter_comparison/
+
+# LoRA training outputs
+lora/
+
+# IDE
+.idea/
