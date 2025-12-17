@@ -64,24 +64,38 @@ See [Release Notes](docs/release_note.md) for details
 pip install voxcpm
 ```
 ### 1.  Model Download (Optional)
-By default, when you first run the script, the model will be downloaded automatically, but you can also download the model in advance.
+
+#### 🎯 Recommended: Use Automated Download Script
+```bash
+# Download VoxCPM1.5 to models/ directory (for local/offline usage)
+python download_models.py
+
+# Download with options
+python download_models.py --model VoxCPM-0.5B  # Other version
+python download_models.py --force              # Force re-download
+```
+
+#### Alternative: Download to HuggingFace Cache
+By default, when you first run the script, the model will be downloaded automatically to `~/.cache/huggingface/`:
 - Download VoxCPM1.5
-    ```
+    ```python
     from huggingface_hub import snapshot_download
     snapshot_download("openbmb/VoxCPM1.5")
     ```
 
 - Or Download VoxCPM-0.5B
-    ```
+    ```python
     from huggingface_hub import snapshot_download
     snapshot_download("openbmb/VoxCPM-0.5B")
     ```
-- Download ZipEnhancer and SenseVoice-Small. We use ZipEnhancer to enhance speech prompts and SenseVoice-Small for speech prompt ASR in the web demo. 
-    ```
-    from modelscope import snapshot_download
-    snapshot_download('iic/speech_zipenhancer_ans_multiloss_16k_base')
-    snapshot_download('iic/SenseVoiceSmall')
-    ```
+
+#### Optional: Download Enhancement Models (for Web Demo)
+We use ZipEnhancer to enhance speech prompts and SenseVoice-Small for speech prompt ASR in the web demo:
+```python
+from modelscope import snapshot_download
+snapshot_download('iic/speech_zipenhancer_ans_multiloss_16k_base')
+snapshot_download('iic/SenseVoiceSmall')
+```
 
 ### 2. Basic Usage
 ```python

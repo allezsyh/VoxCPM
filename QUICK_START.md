@@ -2,20 +2,42 @@
 
 ## 📦 模型准备
 
-### 选项 1: 使用已复制的本地模型
+### 🎯 推荐: 使用自动下载脚本
 ```bash
-# 模型已在: models/VoxCPM1.5/ (1.9 GB)
+# 一键下载模型到 models/ 目录
+python download_models.py
+
+# 下载其他版本
+python download_models.py --model VoxCPM-0.5B
+
+# 强制重新下载
+python download_models.py --force
+```
+
+**特点**:
+- ✅ 自动下载到项目目录
+- ✅ 支持断点续传
+- ✅ 自动验证完整性
+- ✅ 适合离线使用
+
+---
+
+### 选项 1: 使用已有的本地模型
+```bash
+# 如果模型已在: models/VoxCPM1.5/ (1.9 GB)
 python demo/0_local_model_example.py
 ```
 
-### 选项 2: 重新下载模型
+### 选项 2: 手动下载模型
+
 ```python
 from huggingface_hub import snapshot_download
 
 snapshot_download(
     repo_id="openbmb/VoxCPM1.5",
-    local_dir="./models/VoxCPM1.5",
-    local_dir_use_symlinks=False
+    local_dir="models-back/VoxCPM1.5",
+    local_dir_use_symlinks=False,
+    resume_download=True
 )
 ```
 
@@ -23,7 +45,7 @@ snapshot_download(
 ```python
 from voxcpm import VoxCPM
 
-# 会自动从 Hub 下载到缓存
+# 会自动从 Hub 下载到 ~/.cache/
 model = VoxCPM.from_pretrained("openbmb/VoxCPM1.5")
 ```
 
@@ -85,14 +107,16 @@ sf.write("output.wav", wav, model.tts_model.sample_rate)
 ```
 
 ### 使用本地模型
+
 ```python
 from voxcpm import VoxCPM
 
 # 方式 1: 直接指定路径
-model = VoxCPM(voxcpm_model_path="models/VoxCPM1.5")
+model = VoxCPM(voxcpm_model_path="models-back/VoxCPM1.5")
 
 # 方式 2: 使用配置(自动检测)
 from demo.config import get_model_path
+
 model = VoxCPM(voxcpm_model_path=get_model_path())
 ```
 
