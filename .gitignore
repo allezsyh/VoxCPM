@@ -8,7 +8,11 @@ models/
 !models/.gitkeep
 !models/README.md
 
-# Demo outputs
+# Output directory (organized by date)
+output/
+models.zip
+
+# Old demo outputs (deprecated)
 demo/output_*.wav
 demo/batch_outputs/
 demo/parameter_comparison/

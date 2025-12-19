@@ -5,6 +5,7 @@ Demo 示例脚本配置
 """
 
 from pathlib import Path
+from datetime import datetime
 
 # 项目根目录
 PROJECT_ROOT = Path(__file__).parent.parent
@@ -28,9 +29,6 @@ DEFAULT_NORMALIZE = False
 DEFAULT_DENOISE = False
 DEFAULT_RETRY_BADCASE = True
 
-# 输出目录
-OUTPUT_DIR = PROJECT_ROOT / "demo"
-
 
 def get_model_path():
     """获取模型路径(优先本地,其次 Hub)"""
@@ -46,6 +44,14 @@ def get_zipenhancer_path():
         return str(LOCAL_ZIPENHANCER_PATH)
     else:
         return ZIPENHANCER_MODEL_ID
+
+
+def get_output_dir():
+    """获取输出目录(按日期组织: output/YYYYMMDD/)"""
+    today = datetime.now().strftime("%Y%m%d")
+    output_dir = PROJECT_ROOT / "output" / today
+    output_dir.mkdir(parents=True, exist_ok=True)
+    return output_dir
 
 
 def print_model_info():

@@ -21,7 +21,7 @@ from voxcpm import VoxCPM
 # 导入配置
 import sys
 sys.path.insert(0, str(Path(__file__).parent))
-from config import get_model_path
+from config import get_model_path, get_output_dir
 
 
 def main():
@@ -29,7 +29,7 @@ def main():
 
     # 1. 配置
     input_file = "examples/input.txt"
-    output_dir = Path("demo/batch_outputs")
+    output_dir = get_output_dir() / "batch"
 
     # 创建输出目录
     output_dir.mkdir(parents=True, exist_ok=True)

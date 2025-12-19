@@ -18,7 +18,7 @@ from pathlib import Path
 # 导入配置
 import sys
 sys.path.insert(0, str(Path(__file__).parent))
-from config import get_model_path
+from config import get_model_path, get_output_dir
 
 
 def main():
@@ -47,8 +47,9 @@ def main():
     )
 
     # 4. 保存音频
-    output_path = "demo/output_basic_tts.wav"
-    sf.write(output_path, wav, model.tts_model.sample_rate)
+    output_dir = get_output_dir()
+    output_path = output_dir / "1_basic_tts.wav"
+    sf.write(str(output_path), wav, model.tts_model.sample_rate)
 
     # 5. 显示信息
     duration = len(wav) / model.tts_model.sample_rate

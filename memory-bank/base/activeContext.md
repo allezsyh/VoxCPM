@@ -13,8 +13,56 @@
 - ✅ 所有 demo 脚本更新为使用本地模型
 - ✅ 已删除 HuggingFace 缓存节省空间
 - ✅ 创建自动化模型下载脚本
+- ✅ 优化 demo 输出目录结构
+- ✅ 添加脚本对比表格文档
 
 ## 最近完成
+
+### 2025-12-19 优化 Demo 脚本输出和文档
+**任务**: 改进 demo 脚本的输出组织和文档可读性
+
+**完成内容**:
+1. 修改所有 demo 脚本输出到 `output/{date}/` 目录
+2. 清理验证 demo 目录文件(全部保留,都有用)
+3. 在 `demo/README.md` 开头添加脚本对比表格
+
+**输出目录改进**:
+- **新结构**: `output/YYYYMMDD/`
+- **按日期组织**: 自动创建当天目录
+- **文件命名**: 使用脚本序号(如 `1_basic_tts.wav`)
+- **批量输出**: 子目录 `batch/` 和 `parameter_comparison/`
+
+**修改的文件**:
+- ✅ `demo/config.py` - 添加 `get_output_dir()` 函数
+- ✅ `demo/0_local_model_example.py` - 使用新输出目录
+- ✅ `demo/1_basic_tts.py` - 输出到 `output/{date}/1_basic_tts.wav`
+- ✅ `demo/2_voice_cloning.py` - 输出到 `output/{date}/2_voice_cloning.wav`
+- ✅ `demo/3_streaming_tts.py` - 输出到 `output/{date}/3_streaming_tts.wav`
+- ✅ `demo/4_batch_synthesis.py` - 输出到 `output/{date}/batch/`
+- ✅ `demo/5_lora_inference.py` - 输出到 `output/{date}/5_lora_inference.wav`
+- ✅ `demo/6_parameter_tuning.py` - 输出到 `output/{date}/parameter_comparison/`
+- ✅ `.gitignore` - 添加 `output/` 排除
+- ✅ `demo/README.md` - 添加脚本对比表格
+
+**脚本对比表格内容**:
+- 📊 7个脚本功能对比
+- 🎯 应用场景说明
+- ⭐ 难度等级标注
+- 📁 输出位置说明
+- 🚀 快速选择指南
+
+**测试验证**:
+- ✅ 语法检查: 6/6 通过
+- ✅ 输出目录: 自动创建 `output/20251219/`
+- ✅ 配置函数: `get_output_dir()` 正常工作
+
+**优势**:
+- 输出文件按日期组织,便于管理
+- 不同脚本输出互不干扰
+- 清晰的表格对比,快速选择合适脚本
+- 保持 demo 目录整洁
+
+
 
 ### 2025-12-17 创建自动化模型下载脚本
 **任务**: 提供便捷的模型下载工具,方便在其他机器上部署

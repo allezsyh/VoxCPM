@@ -19,7 +19,7 @@ from pathlib import Path
 # 导入配置
 import sys
 sys.path.insert(0, str(Path(__file__).parent))
-from config import get_model_path
+from config import get_model_path, get_output_dir
 
 
 def main():
@@ -31,7 +31,7 @@ def main():
     print("模型加载完成!\n")
 
     # 2. 准备文本
-    text = "Streaming text to speech is easy with VoxCPM! This allows for real-time audio generation."
+    text = "VoxCPM 是一个创新的端到端 TTS 模型,能够生成高度真实的语音。"
     print(f"输入文本: {text}\n")
 
     # 3. 流式生成
@@ -60,8 +60,9 @@ def main():
     wav = np.concatenate(chunks)
 
     # 5. 保存音频
-    output_path = "demo/output_streaming_tts.wav"
-    sf.write(output_path, wav, model.tts_model.sample_rate)
+    output_dir = get_output_dir()
+    output_path = output_dir / "3_streaming_tts.wav"
+    sf.write(str(output_path), wav, model.tts_model.sample_rate)
 
     # 6. 显示信息
     duration = len(wav) / model.tts_model.sample_rate

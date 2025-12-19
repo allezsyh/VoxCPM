@@ -62,7 +62,11 @@ def main():
     )
 
     # 5. 保存音频
-    output_path = project_root / "demo" / "output_local_model.wav"
+    from datetime import datetime
+    today = datetime.now().strftime("%Y%m%d")
+    output_dir = project_root / "output" / today
+    output_dir.mkdir(parents=True, exist_ok=True)
+    output_path = output_dir / "0_local_model.wav"
     sf.write(str(output_path), wav, model.tts_model.sample_rate)
 
     # 6. 显示信息

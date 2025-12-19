@@ -18,7 +18,7 @@ from voxcpm import VoxCPM
 # 导入配置
 import sys
 sys.path.insert(0, str(Path(__file__).parent))
-from config import get_model_path
+from config import get_model_path, get_output_dir
 
 
 def main():
@@ -34,7 +34,7 @@ def main():
     print(f"输入文本: {text}\n")
 
     # 3. 创建输出目录
-    output_dir = Path("demo/parameter_comparison")
+    output_dir = get_output_dir() / "parameter_comparison"
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # 4. 测试不同参数组合

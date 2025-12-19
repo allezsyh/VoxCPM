@@ -22,7 +22,7 @@ from voxcpm.model.voxcpm import LoRAConfig
 # 导入配置
 import sys
 sys.path.insert(0, str(Path(__file__).parent))
-from config import get_model_path
+from config import get_model_path, get_output_dir
 
 
 def main():
@@ -81,8 +81,9 @@ def main():
     )
 
     # 6. 保存音频
-    output_path = "demo/output_lora_inference.wav"
-    sf.write(output_path, wav, model.tts_model.sample_rate)
+    output_dir = get_output_dir()
+    output_path = output_dir / "5_lora_inference.wav"
+    sf.write(str(output_path), wav, model.tts_model.sample_rate)
 
     # 7. 显示信息
     duration = len(wav) / model.tts_model.sample_rate

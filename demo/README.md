@@ -2,9 +2,40 @@
 
 本目录包含 VoxCPM 各种功能的示例脚本,帮助快速上手和理解模型使用方法。
 
-**✨ 所有示例默认使用本地模型 (`models/VoxCPM1.5/`),无需网络下载!**
+**✨ 所有示例默认使用本地模型 (`models/VoxCPM1.5/`),输出保存到 `output/{日期}/`!**
 
-## 📁 文件列表
+---
+
+## 📊 示例脚本对比
+
+| 序号 | 脚本文件 | 功能描述 | 应用场景 | 难度 | 需要资源 | 输出位置 |
+|------|---------|---------|---------|------|---------|---------|
+| 0 | `0_local_model_example.py` | 本地模型加载示例 | 离线环境部署测试 | ⭐ | 本地模型 | `output/{date}/0_local_model.wav` |
+| 1 | `1_basic_tts.py` | 基础文本转语音 | 快速入门、功能演示 | ⭐ | 无 | `output/{date}/1_basic_tts.wav` |
+| 2 | `2_voice_cloning.py` | 零样本语音克隆 | 音色复刻、个性化语音 | ⭐⭐ | 参考音频(3-10秒) | `output/{date}/2_voice_cloning.wav` |
+| 3 | `3_streaming_tts.py` | 流式语音生成 | 实时对话、语音助手 | ⭐⭐ | 无 | `output/{date}/3_streaming_tts.wav` |
+| 4 | `4_batch_synthesis.py` | 批量语音合成 | 有声读物、大规模生产 | ⭐⭐ | 文本文件列表 | `output/{date}/batch/output_*.wav` |
+| 5 | `5_lora_inference.py` | LoRA 微调推理 | 定制化语音模型 | ⭐⭐⭐ | LoRA 权重文件 | `output/{date}/5_lora_inference.wav` |
+| 6 | `6_parameter_tuning.py` | 参数对比调优 | 质量优化、参数选择 | ⭐⭐ | 无 | `output/{date}/parameter_comparison/` |
+
+### 🎯 快速选择指南
+
+**场景选择**:
+- 🚀 **快速开始**: 运行 `1_basic_tts.py`
+- 🎭 **克隆音色**: 使用 `2_voice_cloning.py` + 参考音频
+- ⚡ **实时应用**: 选择 `3_streaming_tts.py`
+- 📚 **批量生产**: 选择 `4_batch_synthesis.py`
+- 🎨 **个性定制**: 训练 LoRA 后使用 `5_lora_inference.py`
+- 🔧 **效果优化**: 运行 `6_parameter_tuning.py` 对比参数
+
+**难度说明**:
+- ⭐ 简单: 开箱即用,无需额外准备
+- ⭐⭐ 中等: 需要准备额外文件或配置
+- ⭐⭐⭐ 复杂: 需要预先训练或高级配置
+
+---
+
+## 📁 详细说明
 
 ### 0️⃣ 本地模型使用
 **文件**: `0_local_model_example.py`
